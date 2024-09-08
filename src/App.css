@@ -1,0 +1,95 @@
+.videoBackground{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.videoBackground video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 91.3vh;
+    object-fit: cover;
+}
+.grid-container {
+    display: grid;
+}
+
+.grid-container .first {
+    grid-area: 1/1/3/2;
+}
+.grid-container .second {
+    display: grid;
+    grid-area: 1/2/2/3;
+}
+
+.grid-container .third {
+    display: grid;
+    grid-area: 2/2/3/3;
+}
+
+.upcoming {
+    grid-area: 1/1/2/2;
+}
+.showUpcoming {
+    display: grid;
+    grid-area: 2/1/3/2;
+}
+
+.homeTeam{
+    grid-area: 1/1/2/2;
+}
+
+.matchPeriod {
+    display: grid;
+    grid-area : 1/2/2/3;
+}
+
+.awayTeam {
+    grid-area : 1/3/2/4;
+}
+
+.previousmatchTitle {
+    grid-area: 1/1/2/1;
+}
+.showPreviousmatch{
+    display: grid;
+    grid-area: 2/1/3/1;
+}
+.showTime {
+    grid-area :1/1/2/1;
+}
+.showDay {
+    grid-area: 2/1/3/1;
+}
+
+.previosFirstMatch {
+    display: grid;
+    grid-area: 1/1/2/1;
+}
+
+.previosSecondMatch {
+    display: grid;
+    grid-area: 2/1/3/1;
+}
+.previosThirdMatch {
+    display: grid;
+    grid-area: 3/1/4/1;
+}
+.previosFourthMatch {
+    display: grid;
+    grid-area: 4/1/5/1;
+}
+.previosFivthMatch {
+    display: grid;
+    grid-area: 5/1/6/1;
+}
+.home {
+    grid-area : 1/1/1/2;
+}
+.score{
+    grid-area : 1/2/1/3;
+}
+.away {
+    grid-area : 1/3/1/4;
+}
