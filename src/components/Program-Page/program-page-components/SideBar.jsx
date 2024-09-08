@@ -87,12 +87,12 @@ export default function Sidebar(props) {
           <ListItem className="p-0" selected={open === 1}>
             <AccordionHeader
               onClick={() => handleOpen(1)}
-              className="border-b-0 p-3"
+              className="border-b-0 p-3 bg-yellow-300"
             >
               <ListItemPrefix>
                 <StarIcon className="h-5 w-5" />
               </ListItemPrefix>
-              <Typography color="blue-gray" className="mr-auto font-normal">
+              <Typography color="blue-gray" className="mr-auto font-normal ml-2 ">
                 Favourite Team
               </Typography>
             </AccordionHeader>
@@ -101,9 +101,9 @@ export default function Sidebar(props) {
             <List className="p-0">
 
               {favTeamArr.map((item, index) => (
-                <ListItem key={index} onClick={getClubDetail} name={item.team}>
+                <ListItem key={index} onClick={getClubDetail} name={item.team} className="bg-yellow-100">
                   <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5 mr-2" />
                   </ListItemPrefix>
                   {item.team}
                 </ListItem>
@@ -114,7 +114,7 @@ export default function Sidebar(props) {
           </AccordionBody>
         </Accordion>
         <hr className="my-2 border-blue-gray-50" />
-        <ListItem>
+        {/* <ListItem>
           <ListItemPrefix>
             <UserCircleIcon className="h-5 w-5" />
           </ListItemPrefix>
@@ -126,9 +126,9 @@ export default function Sidebar(props) {
             <Cog6ToothIcon className="h-5 w-5" />
           </ListItemPrefix>
           Settings
-        </ListItem>
+        </ListItem> */}
 
-        <ListItem onClick={logoutHandle}>
+        <ListItem onClick={logoutHandle} className="bg-red-500">
           <ListItemPrefix>
             <PowerIcon className="h-5 w-5" />
           </ListItemPrefix>
