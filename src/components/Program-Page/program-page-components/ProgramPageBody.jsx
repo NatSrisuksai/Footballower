@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { StarIcon as OutlineStarIcon } from "@heroicons/react/24/outline";
 import { StarIcon as SolidStarIcon } from "@heroicons/react/24/solid";
+import axios from 'axios'; 
 
 function ClubInfo(props) {
   const [isHovered, setIsHovered] = useState(false);
@@ -46,6 +47,23 @@ function ClubInfo(props) {
     }
   }, [props.lastMatchData]);
 
+ // ===================
+ const handleStarClick = async () => {
+  try {
+    const teamName = val || selectedFav;
+
+    await axios.post('http://localhost:3000/addFavorite', { teamName }, {
+      withCredentials: true 
+    });
+
+    alert("Favorite team added successfully!");
+  } catch (error) {
+    console.error("Error adding favorite team:", error);
+    alert("An error occurred while adding the favorite team.");
+  }
+};
+
+
   return (
     <div className="flex-1 h-[calc(100vh-4rem)] overflow-auto">
       {hasVal ? (
@@ -55,6 +73,7 @@ function ClubInfo(props) {
               className="mt-3"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
+              onClick={handleStarClick}
             >
               {isHovered ? (
                 <SolidStarIcon className="h-8 w-8 text-yellow-500" />
