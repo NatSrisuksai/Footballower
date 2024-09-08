@@ -15,6 +15,7 @@ const ProgramPage = () => {
   const [lastestMatch, setlastestMatch] = useState(null);
   const [selectedFav, setselectedFav] = useState(null);
 
+  const [favTeams , setFavTeams] = useState([]);
   // Get the 'team' parameter from the query string
   const query = useQuery();
   var selectedTeamName = query.get("team");
@@ -63,6 +64,32 @@ const ProgramPage = () => {
       });
   }
 
+
+
+  function getFavTeam() {
+    fetch(
+      `http://localhost:3000/getFav`
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.length>=3){
+          setFavTeams(data);
+        }else{
+          setFavTeams(data)
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching match data:", error);
+      });
+  }
+
+  
+
   return (
     <div className="flex flex-col h-screen">
       <ProgramHeader data={teams} onParse={getLastMatch} />
@@ -70,7 +97,9 @@ const ProgramPage = () => {
         <Sidebar
           className="w-1/7"
           onParse={getLastMatchFav}
+          onGetFav = {getFavTeam}
           data={teams} // Pass the teams data to Sidebar
+          favTeam = {favTeams}
         />
         <ClubInfo
           data={teams}
