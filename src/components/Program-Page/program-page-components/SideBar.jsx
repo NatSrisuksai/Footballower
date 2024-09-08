@@ -31,14 +31,35 @@ import { useNavigate } from "react-router-dom";
 export default function Sidebar(props) {
   const [open, setOpen] = React.useState(0);
   const navigate = useNavigate();
+  const favTeamArr = props.favTeam;
 
   function logoutHandle() {
-    navigate("/");
-  }
+    fetch('http://localhost:3000/logout', {
+        method: 'POST',
+        credentials: 'include' // Include cookies for session management
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to log out');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data.message); //  Log the success message
+        // Navigate to the home page or a different page after successful logout
+        navigate('/');
+    })
+    .catch(error => {
+        console.error('Error:', error); // Handle the error
+    });
+}
+
 
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
+
+  props.onGetFav();
 
   function getClubDetail(e) {
     const name = e.currentTarget.getAttribute("name");
@@ -47,6 +68,7 @@ export default function Sidebar(props) {
       props.onParse(team.name, team.url); // Pass the team name and URL
     }
   }
+
 
   return (
     <Card className="h-[calc(100vh-4rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
@@ -77,26 +99,17 @@ export default function Sidebar(props) {
           </ListItem>
           <AccordionBody className="py-1">
             <List className="p-0">
-              <ListItem onClick={getClubDetail} name="Tottenham Hotspur FC">
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Totthenham Hotspur Fc
-              </ListItem>
 
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Liverpool FC
-              </ListItem>
+              {favTeamArr.map((item, index) => (
+                <ListItem key={index} onClick={getClubDetail} name={item.team}>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  {item.team}
+                </ListItem>
+              ))}
 
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Manchester United FC
-              </ListItem>
+
             </List>
           </AccordionBody>
         </Accordion>
@@ -107,12 +120,14 @@ export default function Sidebar(props) {
           </ListItemPrefix>
           Profile
         </ListItem>
+
         <ListItem>
           <ListItemPrefix>
             <Cog6ToothIcon className="h-5 w-5" />
           </ListItemPrefix>
           Settings
         </ListItem>
+
         <ListItem onClick={logoutHandle}>
           <ListItemPrefix>
             <PowerIcon className="h-5 w-5" />
