@@ -9,10 +9,9 @@ function ClubInfo(props) {
   const [hasTeam, setHasTeam] = useState(false);
   const [hasVal, setHasVal] = useState(false);
   const [lastMatch, setLastMatch] = useState(null);
-  
-  
-  const [selectedFav , setselectedFav] = useState(null)
-  const [val , setval] = useState(null)
+
+  const [selectedFav, setselectedFav] = useState(null);
+  const [val, setval] = useState(null);
 
   const allTeamData = props.data;
   // const val = props.selectedTeamName;
@@ -22,22 +21,21 @@ function ClubInfo(props) {
       setHasTeam(true);
       setselectedFav(props.selectedFav);
       setval(props.selectedTeamName);
-    } else if(props.selectedFav === null && props.selectedTeamName != null){
+    } else if (props.selectedFav === null && props.selectedTeamName != null) {
       setHasTeam(true);
       setselectedFav(null);
       setval(props.selectedTeamName);
-    }else if (props.selectedFav != null && props.selectedTeamName === null){
+    } else if (props.selectedFav != null && props.selectedTeamName === null) {
       setHasTeam(true);
       setselectedFav(props.selectedFav);
-      setval(null)
-    }else if (props.selectedFav === null && props.selectedTeamName === null){
+      setval(null);
+    } else if (props.selectedFav === null && props.selectedTeamName === null) {
       setHasTeam(false);
-      setselectedFav(props.selectedFav);
-      setval(props.selectedTeamName)
+      setselectedFav(null);
+      setval(null);
     }
-  }, [props.selectedFav , props.selectedTeamName]);
+  }, [props.selectedFav, props.selectedTeamName]);
 
-  
   useEffect(() => {
     if (props.lastMatchData != null) {
       setHasVal(true);
@@ -48,20 +46,9 @@ function ClubInfo(props) {
     }
   }, [props.lastMatchData]);
 
-
-  
-
-  // useEffect(() => {
-  //   if (val === null) {
-  //     setHasTeam(false);
-  //   } else {
-  //     setHasTeam(true);
-  //   }
-  // }, [val]);
   return (
     <div className="flex-1 h-[calc(100vh-4rem)] overflow-auto">
-      {hasVal ? 
-      (
+      {hasVal ? (
         <div className="grid-container h-full w-full grid-cols-[1fr_3fr] grid-rows-[1fr_3fr]">
           <div className="first bg-cyan-100 flex flex-col items-center justify-start content-center ">
             <div
@@ -79,8 +66,9 @@ function ClubInfo(props) {
               {hasTeam ? (
                 <img
                   src={
-                    allTeamData.find((element) => element.name === (val || selectedFav))
-                      ?.crest || "https://crests.football-data.org/64.png"
+                    allTeamData.find(
+                      (element) => element.name === (val || selectedFav)
+                    )?.crest || "https://crests.football-data.org/64.png"
                   }
                   alt="Description"
                 />
@@ -94,8 +82,9 @@ function ClubInfo(props) {
             <div className="text-xl mb-5 font-medium">
               {hasTeam ? (
                 <p>
-                  {allTeamData.find((element) => element.name === (val || selectedFav))?.name ||
-                    "Liverpool FC"}
+                  {allTeamData.find(
+                    (element) => element.name === (val || selectedFav)
+                  )?.name || "Liverpool FC"}
                 </p>
               ) : (
                 <p>Liverpool FC</p>
@@ -105,8 +94,9 @@ function ClubInfo(props) {
               {hasTeam ? (
                 <p>
                   League Rank:{" "}
-                  {allTeamData.find((element) => element.name === (val || selectedFav))?.rank ||
-                    "2"}
+                  {allTeamData.find(
+                    (element) => element.name === (val || selectedFav)
+                  )?.rank || "2"}
                 </p>
               ) : (
                 <p>League Rank: 2</p>
@@ -114,8 +104,9 @@ function ClubInfo(props) {
               {hasTeam ? (
                 <p>
                   Coach:{" "}
-                  {allTeamData.find((element) => element.name === (val || selectedFav))?.coach ||
-                    "Arne Slot"}
+                  {allTeamData.find(
+                    (element) => element.name === (val || selectedFav)
+                  )?.coach || "Arne Slot"}
                 </p>
               ) : (
                 <p>Coach: Arne Slot</p>
@@ -142,34 +133,44 @@ function ClubInfo(props) {
             <div className="showUpcoming h-full w-full grid-rows-1 grid-cols-[2fr_1fr_2fr]">
               <div className="homeTeam flex flex-col items-center justify-center h-full">
                 <img
-                    src={
-                        allTeamData.find((element) => element.name === lastMatch[5].nextMatch[0])?.crest ||
-                        "https://crests.football-data.org/64.png" // Fallback URL
-                    }
+                  src={
+                    allTeamData.find(
+                      (element) => element.name === lastMatch[5].nextMatch[0]
+                    )?.crest || "https://crests.football-data.org/64.png" // Fallback URL
+                  }
                   alt="Description"
                   className="w-12 h-12"
                 />
-                <p className="text-xl font-medium">{lastMatch[5].nextMatch[0]}</p>
+                <p className="text-xl font-medium">
+                  {lastMatch[5].nextMatch[0]}
+                </p>
               </div>
 
               <div className="matchPeriod h-full w-full grid-rows-2 grid-cols-1">
                 <div className="showTime flex flex-col items-center justify-center h-full">
-                  <p className="text-2xl font-bold">{lastMatch[5].matchDate.dateText}</p>
+                  <p className="text-2xl font-bold">
+                    {lastMatch[5].matchDate.dateText}
+                  </p>
                 </div>
                 <div className="showDay flex flex-col items-center justify-center h-full">
-                  <p className="font-bold">{lastMatch[5].matchDate.date.split(',')[0].trim()}</p>
+                  <p className="font-bold">
+                    {lastMatch[5].matchDate.date.split(",")[0].trim()}
+                  </p>
                 </div>
               </div>
               <div className="awayTeam flex flex-col items-center justify-center h-full">
-              <img
-                    src={
-                        allTeamData.find((element) => element.name === lastMatch[5].nextMatch[1])?.crest ||
-                        "https://crests.football-data.org/64.png" // Fallback URL
-                    }
+                <img
+                  src={
+                    allTeamData.find(
+                      (element) => element.name === lastMatch[5].nextMatch[1]
+                    )?.crest || "https://crests.football-data.org/64.png" // Fallback URL
+                  }
                   alt="Description"
                   className="w-12 h-12"
                 />
-                <p className="text-xl font-medium">{lastMatch[5].nextMatch[1]}</p>
+                <p className="text-xl font-medium">
+                  {lastMatch[5].nextMatch[1]}
+                </p>
               </div>
             </div>
             <hr className="mx-2 border-6 border-black" />
@@ -250,7 +251,9 @@ function ClubInfo(props) {
             </div>
           </div>
         </div>
-    ) : <p>Hi</p>}
+      ) : (
+        <p>Hi</p>
+      )}
     </div>
   );
 }

@@ -1,30 +1,37 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItems } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import SearchBar from './SearchBar'; // Import the SearchBar component
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+  Menu,
+  MenuButton,
+  MenuItems,
+} from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar"; // Import the SearchBar component
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function ProgramHeader(props) {
   const [navigation, setNavigation] = useState([
-    { name: 'Home', href: '/', current: false },
-    { name: 'About Us', href: '/about-us', current: false },
+    { name: "Home", href: "/", current: false },
+    { name: "About Us", href: "/about-us", current: false },
   ]);
 
   const clickPageHandle = (event) => {
     const id = event.target.id;
-    setNavigation(() => (
-      navigation.map(item => ({
+    setNavigation(() =>
+      navigation.map((item) => ({
         ...item,
-        current: item.name === id
+        current: item.name === id,
       }))
-    ));
-  }
+    );
+  };
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -34,8 +41,14 @@ export default function ProgramHeader(props) {
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
-              <Bars3Icon aria-hidden="true" className="block h-6 w-6 group-data-[open]:hidden" />
-              <XMarkIcon aria-hidden="true" className="hidden h-6 w-6 group-data-[open]:block" />
+              <Bars3Icon
+                aria-hidden="true"
+                className="block h-6 w-6 group-data-[open]:hidden"
+              />
+              <XMarkIcon
+                aria-hidden="true"
+                className="hidden h-6 w-6 group-data-[open]:block"
+              />
             </DisclosureButton>
           </div>
           <div className="flex flex-1 items-center justify-between sm:items-stretch sm:justify-start">
@@ -54,10 +67,12 @@ export default function ProgramHeader(props) {
                     id={item.name}
                     to={item.href}
                     onClick={clickPageHandle}
-                    aria-current={item.current ? 'page' : undefined}
+                    aria-current={item.current ? "page" : undefined}
                     className={classNames(
-                      item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                      'rounded-md px-3 py-2 text-sm font-medium',
+                      item.current
+                        ? "bg-gray-900 text-white"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                      "rounded-md px-3 py-2 text-sm font-medium"
                     )}
                   >
                     {item.name}
@@ -66,9 +81,7 @@ export default function ProgramHeader(props) {
               </div>
             </div>
             <div className="flex items-center ml-auto mr-2">
-
-              <SearchBar data={props.data} onParse={props.onParse} /> 
-
+              <SearchBar data={props.data} onParse={props.onParse} />
             </div>
           </div>
         </div>
@@ -81,10 +94,12 @@ export default function ProgramHeader(props) {
               key={item.name}
               as="a"
               href={item.href}
-              aria-current={item.current ? 'page' : undefined}
+              aria-current={item.current ? "page" : undefined}
               className={classNames(
-                item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                'block rounded-md px-3 py-2 text-base font-medium',
+                item.current
+                  ? "bg-gray-900 text-white"
+                  : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                "block rounded-md px-3 py-2 text-base font-medium"
               )}
             >
               {item.name}
@@ -95,6 +110,3 @@ export default function ProgramHeader(props) {
     </Disclosure>
   );
 }
-
-
-

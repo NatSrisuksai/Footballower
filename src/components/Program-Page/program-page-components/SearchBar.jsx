@@ -2,15 +2,15 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useRef } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = (props) => {
   const teams = props.data;
   const [inputValue, setInputValue] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [error, setError] = useState(null);
-  const [latestMatch , setLatestMatch] = useState(null)
-  const searchBarRef = useRef(null);  // Ref to detect clicks outside
+  const [latestMatch, setLatestMatch] = useState(null);
+  const searchBarRef = useRef(null); // Ref to detect clicks outside
   const navigate = useNavigate();
 
   // Click handler for showing the search list
@@ -19,27 +19,29 @@ const SearchBar = (props) => {
   }
 
   // Click handler when user selects a club
-  function handleClubClick(teamName,teamURL) {
+  function handleClubClick(teamName, teamURL) {
     setShowSearch(false);
     console.log(teamName);
     // Call the API to get the latest match data
-    fetch(`http://localhost:3000/latestMatch?url=${encodeURIComponent(teamURL)}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // console.log(data);
-            setLatestMatch(data);
-            props.onParse(data); 
-            // You can also store the data in a state or context if needed
-            navigate(`/program-page?team=${teamName}`);
-        })
-        .catch(error => {
-            console.error('Error fetching match data:', error);
-        });
+    fetch(
+      `http://localhost:3000/latestMatch?url=${encodeURIComponent(teamURL)}`
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // console.log(data);
+        setLatestMatch(data);
+        props.onParse(data);
+        // You can also store the data in a state or context if needed
+        navigate(`/program-page?team=${teamName}`);
+      })
+      .catch((error) => {
+        console.error("Error fetching match data:", error);
+      });
 
     // navigate("/club");
   }
@@ -47,7 +49,10 @@ const SearchBar = (props) => {
   // Handle clicks outside the search bar to close the search list
   useEffect(() => {
     function handleClickOutside(event) {
-      if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
+      if (
+        searchBarRef.current &&
+        !searchBarRef.current.contains(event.target)
+      ) {
         setShowSearch(false);
       }
     }
@@ -74,7 +79,7 @@ const SearchBar = (props) => {
           onClick={searchHandle}
           placeholder="Enter Football Club Name"
           className="placeholder:text-gray-700 p-2 outline-none flex-grow ml-2 h-full"
-          style={{ height: '1.6rem' }} // Adjust this value to match header height
+          style={{ height: "1.6rem" }} // Adjust this value to match header height
         />
       </div>
 
@@ -85,9 +90,14 @@ const SearchBar = (props) => {
               <li
                 key={team?.teamID}
                 className="p-3 text-sm hover:bg-blue-500 hover:text-white cursor-pointer"
-                onClick={() => handleClubClick(team.name,team.url)}
+                onClick={() => handleClubClick(team.name, team.url)}
               >
-                <img src={team.crest} alt={`${team.name} logo`} className="inline mr-2" width="20"/>
+                <img
+                  src={team.crest}
+                  alt={`${team.name} logo`}
+                  className="inline mr-2"
+                  width="20"
+                />
                 {team?.name}
               </li>
             ))
