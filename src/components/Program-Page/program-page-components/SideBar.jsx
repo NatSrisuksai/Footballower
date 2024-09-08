@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React , {useEffect} from "react";
 import {
   Card,
   Typography,
@@ -58,7 +58,9 @@ export default function Sidebar(props) {
     setOpen(open === value ? 0 : value);
   };
 
-  props.onGetFav();
+  useEffect(() => {
+    props.onGetFav();
+  }, [props]);
 
   function getClubDetail(e) {
     const name = e.currentTarget.getAttribute("name");
