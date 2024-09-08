@@ -77,8 +77,8 @@ const ProgramPage = () => {
         return response.json();
       })
       .then((data) => {
-        if (data.length>=3){
-          setFavTeams(data);
+        if (data.length>=5){
+          setFavTeams(data.slice(-5));
         }else{
           setFavTeams(data)
         }
@@ -87,7 +87,6 @@ const ProgramPage = () => {
         console.error("Error fetching match data:", error);
       });
   }
-
   
 
   return (
@@ -106,6 +105,7 @@ const ProgramPage = () => {
           selectedTeamName={selectedTeamName}
           lastMatchData={lastestMatch}
           selectedFav={selectedFav}
+          favTeam = {favTeams}
         />
       </div>
     </div>
