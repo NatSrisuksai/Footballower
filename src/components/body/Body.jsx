@@ -20,7 +20,7 @@ const LoginForm = () => {
         <Typography color="gray" className="mt-4 text-center font-normal">
           Already have an account?{" "}
           <a href="#" className="font-medium text-gray-900" onClick={changeStateHandle} >
-          {signIn ? "login" : "sign up"}
+          {signIn ? "sign up" : "login"}
           </a>
         </Typography>
       </div>
