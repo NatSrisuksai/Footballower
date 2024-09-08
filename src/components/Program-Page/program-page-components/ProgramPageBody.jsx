@@ -307,14 +307,14 @@ function ClubInfo(props) {
           </div>
         </div>
       ) : (
-          <div className="absolute inset-0 -z-10 min-h-screen">
-            <video
-              src={videoBG}
-              autoPlay
-              loop
-              muted
-              className="w-full h-full object-cover"
-            />
+        <div className="absolute inset-0 -z-10 min-h-screen">
+          <video
+            src={videoBG}
+            autoPlay
+            loop
+            muted
+            className="w-full h-full object-cover"
+          />
         </div>
 
         // <p>This is website that allow everyone to follow your own favorite club in Premier Leauge</p>

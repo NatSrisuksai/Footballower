@@ -19,7 +19,11 @@ function classNames(...classes) {
 
 export default function ProgramHeader(props) {
   const [navigation, setNavigation] = useState([
-    { name: "About Me", href: "https://github.com/NatSrisuksai", current: false },
+    {
+      name: "About Me",
+      href: "https://github.com/NatSrisuksai",
+      current: false,
+    },
   ]);
 
   const clickPageHandle = (event) => {

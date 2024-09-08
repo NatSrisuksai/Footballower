@@ -15,7 +15,7 @@ const ProgramPage = () => {
   const [lastestMatch, setlastestMatch] = useState(null);
   const [selectedFav, setselectedFav] = useState(null);
 
-  const [favTeams , setFavTeams] = useState([]);
+  const [favTeams, setFavTeams] = useState([]);
   // Get the 'team' parameter from the query string
   const query = useQuery();
   var selectedTeamName = query.get("team");
@@ -64,12 +64,8 @@ const ProgramPage = () => {
       });
   }
 
-
-
   function getFavTeam() {
-    fetch(
-      `http://localhost:3000/getFav`
-    )
+    fetch(`http://localhost:3000/getFav`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -77,17 +73,16 @@ const ProgramPage = () => {
         return response.json();
       })
       .then((data) => {
-        if (data.length>=5){
+        if (data.length >= 5) {
           setFavTeams(data.slice(-5));
-        }else{
-          setFavTeams(data)
+        } else {
+          setFavTeams(data);
         }
       })
       .catch((error) => {
         console.error("Error fetching match data:", error);
       });
   }
-  
 
   return (
     <div className="flex flex-col h-screen">
@@ -96,16 +91,16 @@ const ProgramPage = () => {
         <Sidebar
           className="w-1/7"
           onParse={getLastMatchFav}
-          onGetFav = {getFavTeam}
+          onGetFav={getFavTeam}
           data={teams} // Pass the teams data to Sidebar
-          favTeam = {favTeams}
+          favTeam={favTeams}
         />
         <ClubInfo
           data={teams}
           selectedTeamName={selectedTeamName}
           lastMatchData={lastestMatch}
           selectedFav={selectedFav}
-          favTeam = {favTeams}
+          favTeam={favTeams}
         />
       </div>
     </div>
