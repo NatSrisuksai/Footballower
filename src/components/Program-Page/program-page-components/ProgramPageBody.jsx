@@ -3,10 +3,11 @@
 import React, { useEffect, useState } from "react";
 import { StarIcon as OutlineStarIcon } from "@heroicons/react/24/outline";
 import { StarIcon as SolidStarIcon } from "@heroicons/react/24/solid";
-import axios from 'axios'; 
+import axios from "axios";
 
 function ClubInfo(props) {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isSelected, setisSelected] = useState(false);
+
   const [hasTeam, setHasTeam] = useState(false);
   const [hasVal, setHasVal] = useState(false);
   const [lastMatch, setLastMatch] = useState(null);
@@ -47,38 +48,72 @@ function ClubInfo(props) {
     }
   }, [props.lastMatchData]);
 
- // ===================
- const handleStarClick = async () => {
-  try {
-    const teamName = val || selectedFav;
+  // ===================
+  const handleStarClick = async () => {
+    try {
+      const teamName = val || selectedFav;
 
-    await axios.post('http://localhost:3000/addFavorite', { teamName }, {
-      withCredentials: true 
-    });
+      await axios.post(
+        "http://localhost:3000/addFavorite",
+        { teamName },
+        {
+          withCredentials: true,
+        }
+      );
 
-    alert("Favorite team added successfully!");
-  } catch (error) {
-    console.error("Error adding favorite team:", error);
-    alert("An error occurred while adding the favorite team.");
-  }
-};
+      alert("Favorite team added successfully!");
+    } catch (error) {
+      console.error("Error adding favorite team:", error);
+      alert("An error occurred while adding the favorite team.");
+    }
+  };
 
+  const handleStarClickDelete = async () => {
+    try {
+      const teamName = val || selectedFav; // Get the selected team name
+
+      await axios.delete("http://localhost:3000/deleteFavorite", {
+        data: { teamName },
+        withCredentials: true,
+      });
+
+      alert("Favorite team removed successfully!");
+    } catch (error) {
+      console.error("Error removing favorite team:", error);
+      alert("An error occurred while removing the favorite team.");
+    }
+  };
+
+  useEffect(() => {
+    const teamToFind = val || selectedFav;
+
+    if (teamToFind) {
+      if (props.favTeam.some((obj) => obj.team === teamToFind)) {
+        setisSelected(true);
+      } else {
+        setisSelected(false);
+      }
+    } else {
+      setisSelected(false);
+    }
+  }, [props.favTeam, selectedFav, val]);
 
   return (
     <div className="flex-1 h-[calc(100vh-4rem)] overflow-auto">
       {hasVal ? (
         <div className="grid-container h-full w-full grid-cols-[1fr_3fr] grid-rows-[1fr_3fr]">
           <div className="first bg-cyan-100 flex flex-col items-center justify-start content-center ">
-            <div
-              className="mt-3"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              onClick={handleStarClick}
-            >
-              {isHovered ? (
-                <SolidStarIcon className="h-8 w-8 text-yellow-500" />
+            <div className="mt-3">
+              {isSelected ? (
+                <SolidStarIcon
+                  className="h-8 w-8 text-yellow-500"
+                  onClick={handleStarClickDelete}
+                />
               ) : (
-                <OutlineStarIcon className="h-8 w-8 text-gray-500" />
+                <OutlineStarIcon
+                  className="h-8 w-8 text-gray-500"
+                  onClick={handleStarClick}
+                />
               )}
             </div>
             <div className="mb-2 mt-3">
