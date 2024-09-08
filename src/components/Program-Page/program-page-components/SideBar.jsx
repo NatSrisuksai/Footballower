@@ -34,26 +34,25 @@ export default function Sidebar(props) {
   const favTeamArr = props.favTeam;
 
   function logoutHandle() {
-    fetch('http://localhost:3000/logout', {
-        method: 'POST',
-        credentials: 'include' // Include cookies for session management
+    fetch("http://localhost:3000/logout", {
+      method: "POST",
+      credentials: "include", // Include cookies for session management
     })
-    .then(response => {
+      .then((response) => {
         if (!response.ok) {
-            throw new Error('Failed to log out');
+          throw new Error("Failed to log out");
         }
         return response.json();
-    })
-    .then(data => {
+      })
+      .then((data) => {
         console.log(data.message); //  Log the success message
         // Navigate to the home page or a different page after successful logout
-        navigate('/');
-    })
-    .catch(error => {
-        console.error('Error:', error); // Handle the error
-    });
-}
-
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Error:", error); // Handle the error
+      });
+  }
 
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
@@ -68,7 +67,6 @@ export default function Sidebar(props) {
       props.onParse(team.name, team.url); // Pass the team name and URL
     }
   }
-
 
   return (
     <Card className="h-[calc(100vh-4rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
@@ -92,24 +90,32 @@ export default function Sidebar(props) {
               <ListItemPrefix>
                 <StarIcon className="h-5 w-5" />
               </ListItemPrefix>
-              <Typography color="blue-gray" className="mr-auto font-normal ml-2 ">
+              <Typography
+                color="blue-gray"
+                className="mr-auto font-normal ml-2 "
+              >
                 Favourite Team
               </Typography>
             </AccordionHeader>
           </ListItem>
           <AccordionBody className="py-1">
             <List className="p-0">
-
               {favTeamArr.map((item, index) => (
-                <ListItem key={index} onClick={getClubDetail} name={item.team} className="bg-yellow-100">
+                <ListItem
+                  key={index}
+                  onClick={getClubDetail}
+                  name={item.team}
+                  className="bg-yellow-100"
+                >
                   <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5 mr-2" />
+                    <ChevronRightIcon
+                      strokeWidth={3}
+                      className="h-3 w-5 mr-2"
+                    />
                   </ListItemPrefix>
                   {item.team}
                 </ListItem>
               ))}
-
-
             </List>
           </AccordionBody>
         </Accordion>
@@ -130,7 +136,7 @@ export default function Sidebar(props) {
 
         <ListItem onClick={logoutHandle} className="bg-red-500">
           <ListItemPrefix>
-            <PowerIcon className="h-5 w-5" />
+            <PowerIcon className="h-5 w-5 mr-2" />
           </ListItemPrefix>
           Log Out
         </ListItem>

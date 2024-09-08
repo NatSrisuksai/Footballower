@@ -1,17 +1,20 @@
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';  // Import useNavigate
 
-const Signup = () => {
+const Signup = (props) => {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
         password: ''
     });
-   
+    
+    const [doneSignUp , setdoneSignUp] = useState(false);
+
     const [errorMessage, setErrorMessage] = useState(""); // Initialize errorMessage state
 
-    const navigate = useNavigate(); // Initialize navigate
+    // const navigate = useNavigate(); // Initialize navigate
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -33,7 +36,8 @@ const Signup = () => {
 
             if (response.ok) {
                 // Redirect using navigate
-                navigate('/program-page');
+                setdoneSignUp(true);
+                props.onDone();
             } else {
                 // Parse the error message from the response
                 const errorData = await response.json();

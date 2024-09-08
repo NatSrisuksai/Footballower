@@ -19,8 +19,7 @@ function classNames(...classes) {
 
 export default function ProgramHeader(props) {
   const [navigation, setNavigation] = useState([
-    { name: "Home", href: "/", current: false },
-    { name: "About Us", href: "/about-us", current: false },
+    { name: "About Me", href: "https://github.com/NatSrisuksai", current: false },
   ]);
 
   const clickPageHandle = (event) => {
@@ -54,8 +53,8 @@ export default function ProgramHeader(props) {
           <div className="flex flex-1 items-center justify-between sm:items-stretch sm:justify-start">
             <div className="flex flex-shrink-0 items-center">
               <img
-                alt="Your Company"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                alt="Footballower"
+                src="https://cdn-icons-png.freepik.com/256/17539/17539726.png?ga=GA1.1.2001868236.1725809602&semt=ais_hybrid"
                 className="h-8 w-auto"
               />
             </div>

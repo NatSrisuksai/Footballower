@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { StarIcon as OutlineStarIcon } from "@heroicons/react/24/outline";
 import { StarIcon as SolidStarIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
+import videoBG from "../../../assets/eplAnthem.mp4";
 
 function ClubInfo(props) {
   const [isSelected, setisSelected] = useState(false);
@@ -306,7 +307,17 @@ function ClubInfo(props) {
           </div>
         </div>
       ) : (
-        <p>Hi</p>
+          <div className="absolute inset-0 -z-10 min-h-screen">
+            <video
+              src={videoBG}
+              autoPlay
+              loop
+              muted
+              className="w-full h-full object-cover"
+            />
+        </div>
+
+        // <p>This is website that allow everyone to follow your own favorite club in Premier Leauge</p>
       )}
     </div>
   );
