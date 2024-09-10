@@ -75,8 +75,10 @@ const ProgramPage = () => {
       .then((data) => {
         if (data.length >= 5) {
           setFavTeams(data.slice(-5));
-        } else {
+        } else if(data.length >=1 && data.length < 5){
           setFavTeams(data);
+        }else if(data.length === 0){
+          setFavTeams([])
         }
       })
       .catch((error) => {
