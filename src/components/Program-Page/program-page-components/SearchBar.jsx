@@ -24,7 +24,7 @@ const SearchBar = (props) => {
     console.log(teamName);
     // Call the API to get the latest match data
     fetch(
-      `https://footballower-backend.vercel.app/latestMatch?url=${encodeURIComponent(teamURL)}`
+      `http://localhost:3000/latestMatch?url=${encodeURIComponent(teamURL)}`
     )
       .then((response) => {
         if (!response.ok) {
