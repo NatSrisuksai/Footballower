@@ -34,7 +34,7 @@ export default function Sidebar(props) {
   const favTeamArr = props.favTeam;
 
   function logoutHandle() {
-    fetch("http://localhost:3000/logout", {
+    fetch("https://footballower-backend.vercel.app/logout", {
       method: "POST",
       credentials: "include", // Include cookies for session management
     })

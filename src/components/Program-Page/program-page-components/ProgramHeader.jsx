@@ -27,11 +27,12 @@ export default function ProgramHeader(props) {
   ]);
 
   const clickPageHandle = (event) => {
-    const id = event.target.id;
+    event.preventDefault();
+    window.open("https://github.com/NatSrisuksai", "_blank"); // Open the link in a new tab
     setNavigation(() =>
       navigation.map((item) => ({
         ...item,
-        current: item.name === id,
+        current: item.name === event.target.id,
       }))
     );
   };
@@ -93,20 +94,21 @@ export default function ProgramHeader(props) {
       <DisclosurePanel className="sm:hidden">
         <div className="space-y-1 px-2 pb-3 pt-2">
           {navigation.map((item) => (
-            <DisclosureButton
+            <Link
               key={item.name}
-              as="a"
-              href={item.href}
+              id={item.name}
+              to={item.href}
+              onClick={(event) => clickPageHandle(event, item.href)} // Pass the href here
               aria-current={item.current ? "page" : undefined}
               className={classNames(
                 item.current
                   ? "bg-gray-900 text-white"
                   : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                "block rounded-md px-3 py-2 text-base font-medium"
+                "rounded-md px-3 py-2 text-sm font-medium"
               )}
             >
               {item.name}
-            </DisclosureButton>
+            </Link>
           ))}
         </div>
       </DisclosurePanel>

@@ -21,7 +21,7 @@ const ProgramPage = () => {
   var selectedTeamName = query.get("team");
 
   useEffect(() => {
-    fetch("http://localhost:3000/")
+    fetch("https://footballower-backend.vercel.app/")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch data");
@@ -47,7 +47,7 @@ const ProgramPage = () => {
 
   function getLastMatchFav(teamName, teamURL) {
     fetch(
-      `http://localhost:3000/latestMatch?url=${encodeURIComponent(teamURL)}`
+      `https://footballower-backend.vercel.app/latestMatch?url=${encodeURIComponent(teamURL)}`
     )
       .then((response) => {
         if (!response.ok) {
@@ -65,7 +65,7 @@ const ProgramPage = () => {
   }
 
   function getFavTeam() {
-    fetch(`http://localhost:3000/getFav`)
+    fetch(`https://footballower-backend.vercel.app/getFav`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");

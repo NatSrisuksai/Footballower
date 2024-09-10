@@ -26,7 +26,7 @@ const Signup = (props) => {
     console.log(formData); // Check the form data before sending the request
 
     try {
-      const response = await fetch("http://localhost:3000/register", {
+      const response = await fetch("https://footballower-backend.vercel.app/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
