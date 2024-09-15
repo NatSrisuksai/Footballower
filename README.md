@@ -12,7 +12,7 @@ Footballower is a web application designed to help users discover their favorite
 - HTML/CSS
 
 ## Prerequisites
-- Node.JS
+- Node.js
 
 ## Screenshots
 
