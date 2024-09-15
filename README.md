@@ -7,11 +7,13 @@ Footballower is a web application designed to help users discover their favorite
 
 ## Tech Stack
 
-- Node.JS
+- REACT JS
 - Tailwind CSS
 - HTML/CSS
 
-
+## Prerequisites
+- Node.JS
+- 
 ## Screenshots
 
 ![App Screenshot](./read%20me%20picture/Screenshot%202024-09-16%20010944.png)
