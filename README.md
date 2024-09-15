@@ -14,5 +14,8 @@ Footballower is a web application designed to help users discover their favorite
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](./read%20me%20picture/Screenshot%202024-09-16%20010944.png)
+![App Screenshot](./read%20me%20picture/Screenshot%202024-09-16%20011030.png)
+![App Screenshot](./read%20me%20picture/Screenshot%202024-09-16%20011121.png)
+![App Screenshot](./read%20me%20picture/Screenshot%202024-09-16%20011143.png)
 
