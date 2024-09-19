@@ -21,11 +21,13 @@ const Login = () => {
 
     try {
       const response = await fetch("https://footballower-backend.vercel.app/login", {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
+        credentials: "include",
       });
 
       if (response.ok) {
