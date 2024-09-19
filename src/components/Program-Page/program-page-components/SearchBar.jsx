@@ -24,27 +24,26 @@ const SearchBar = (props) => {
     console.log(teamName);
     // Call the API to get the latest match data
     fetch(
-      `https://footballower-backend.vercel.app/latestMatch?url=${encodeURIComponent(teamURL), {credentials: "include",}}`
-      ,
+      `https://footballower-backend.vercel.app/latestMatch?url=${encodeURIComponent(teamURL)}`,
+      {
+        credentials: "include",
+      }
     )
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          return response.json().then(err => { throw err; }); // Parse error response
         }
         return response.json();
       })
       .then((data) => {
-        // console.log(data);
+        console.log("Received data:", data); // Log received data
         setLatestMatch(data);
         props.onParse(data);
-        // You can also store the data in a state or context if needed
-        navigate(`/program-page?team=${teamName}`);
+        navigate(`/program-page?team=${encodeURIComponent(teamName)}`);
       })
       .catch((error) => {
         console.error("Error fetching match data:", error);
       });
-
-    // navigate("/club");
   }
 
   // Handle clicks outside the search bar to close the search list
