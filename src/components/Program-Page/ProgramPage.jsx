@@ -21,7 +21,7 @@ const ProgramPage = () => {
   var selectedTeamName = query.get("team");
 
   useEffect(() => {
-    fetch("https://footballower-backend.vercel.app/")
+    fetch("https://footballower-backend.vercel.app/", {credentials: "include",})
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch data");
@@ -47,7 +47,7 @@ const ProgramPage = () => {
 
   function getLastMatchFav(teamName, teamURL) {
     fetch(
-      `https://footballower-backend.vercel.app/latestMatch?url=${encodeURIComponent(teamURL)}`
+      `https://footballower-backend.vercel.app/latestMatch?url=${encodeURIComponent(teamURL) , {credentials: "include",}}`
     )
       .then((response) => {
         if (!response.ok) {

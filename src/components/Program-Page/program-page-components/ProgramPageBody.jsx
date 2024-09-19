@@ -76,6 +76,7 @@ function ClubInfo(props) {
       await axios.delete("https://footballower-backend.vercel.app/deleteFavorite", {
         data: { teamName },
         withCredentials: true,
+        
       });
 
       alert("Favorite team removed successfully!");
