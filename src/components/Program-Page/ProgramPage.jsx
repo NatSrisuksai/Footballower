@@ -47,7 +47,11 @@ const ProgramPage = () => {
 
   function getLastMatchFav(teamName, teamURL) {
     fetch(
-      `https://footballower-backend.vercel.app/latestMatch?url=${encodeURIComponent(teamURL) , {credentials: "include",}}`
+      `https://footballower-backend.vercel.app/latestMatch?url=${encodeURIComponent(teamURL)}`,
+      {
+        method: "GET",
+        credentials: "include", // Include credentials (cookies) in the request
+      }
     )
       .then((response) => {
         if (!response.ok) {
@@ -63,6 +67,7 @@ const ProgramPage = () => {
         console.error("Error fetching match data:", error);
       });
   }
+  
 
   function getFavTeam() {
     fetch(`http://localhost:3000/getFav`)
