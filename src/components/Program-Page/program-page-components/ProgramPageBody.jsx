@@ -55,7 +55,7 @@ function ClubInfo(props) {
       const teamName = val || selectedFav;
 
       await axios.post(
-        "http://localhost:3000/addFavorite",
+        "https://footballower-backend.vercel.app/addFavorite",
         { teamName },
         {
           withCredentials: true,
@@ -73,7 +73,7 @@ function ClubInfo(props) {
     try {
       const teamName = val || selectedFav; // Get the selected team name
 
-      await axios.delete("http://localhost:3000/deleteFavorite", {
+      await axios.delete("https://footballower-backend.vercel.app/deleteFavorite", {
         data: { teamName },
         withCredentials: true,
       });
