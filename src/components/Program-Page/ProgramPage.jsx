@@ -21,7 +21,7 @@ const ProgramPage = () => {
   var selectedTeamName = query.get("team");
 
   useEffect(() => {
-    fetch("https://footballower-backend.vercel.app/", {
+    fetch("https://footballower-backend.vercel.app/teamdata", {
       credentials: "include", // Include credentials (cookies)
     })
       .then((res) => {
