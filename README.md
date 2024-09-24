@@ -12,7 +12,38 @@ Footballower is a web application designed to help users discover their favorite
 - HTML/CSS
 
 ## Prerequisites
-- Node.js
+- Node.js: Ensure Node.js is installed on your machine to run the project.
+
+## Installation
+
+Install my-project with npm
+
+
+- Clone the repository:
+```bash
+git clone https://github.com/NatSrisuksai/Footballower-Web-Application.git
+```
+
+- Navigate to the project directory:
+```bash
+cd Footballower-Web-Application
+```
+
+- Install dependencies:
+```bash
+npm install
+```
+
+- Run the server:
+```bash
+npm start
+```
+## Features
+
+- **User Registration**: Users can sign up with a unique username and password
+- **User Login**: Users must log in first before using the website.
+- **Team Discovery**: Explore teams in the English Premier League.
+- **Favorite Team Selection**: Users can select their favorite teams and see related information.
 
 ## Screenshots
 
