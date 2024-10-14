@@ -19,17 +19,17 @@ Footballower is a web application designed to help users discover their favorite
 Install my-project with npm
 
 
-- Clone the repository:
+- Clone the repository :
 ```bash
 git clone https://github.com/NatSrisuksai/Footballower-Web-Application.git
 ```
 
-- Navigate to the project directory:
+- Navigate to the project directory :
 ```bash
 cd Footballower-Web-Application
 ```
 
-- Install dependencies:
+- Install dependencies :
 ```bash
 npm install
 ```
